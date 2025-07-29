@@ -1,6 +1,3 @@
 1.furkan
-<<<<<<< HEAD
 3.furkan
-=======
 2.furkan
->>>>>>> 560052473d216104d1b3c1daa67c896dc80cf473
