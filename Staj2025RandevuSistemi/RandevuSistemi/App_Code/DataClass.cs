@@ -11,6 +11,61 @@ namespace RandevuSistemi.App_Code
 {
     public class DataClass : MainClass
     {
+        public List<RandevuListesiClass> denemelistesi(string IP, Guid? IslemYapanUser)
+        {
+            List<RandevuListesiClass> sonuc = new List<RandevuListesiClass>();
+            string Query = @"SELECT 
+                        danisan.KullaniciAdiSoyadi AS DANISAN, 
+                        uzman.KullaniciAdiSoyadi AS Uzman, 
+                        r.RandevuTarihSaati as TarihSaat, 
+                        ortam.ParametreDeger as RandevuOrtami,
+                        r.RandevuId
+                     FROM Randevular r
+                     INNER JOIN Kullanicilar uzman ON uzman.KullaniciGuidId=r.UzmanGuidId
+					 inner join Kullanicilar danisan on danisan.KullaniciGuidId = r.DanisanGuidId
+					 inner join Parametreler ortam on ortam.ParametreAdi = r.RandevuOrtami ";
+            SqlCommand cmd;
+            DataTable dt = new DataTable();
+            string sil = "<a href=\"javascript:RandevuSil('{0}')\">Sil</a>";
+            string duzenle = "<a href=\"javascript:RandevuDuzenle('{0})'\">Düzenle</a>";
+
+            try
+            {
+                using (con = new SqlConnection(WEB_con_str))
+                {
+                    if (con.State != ConnectionState.Open)
+                        con.Open();
+
+                    using (cmd = new SqlCommand(Query, con))
+                    {
+                        using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                        {
+                            ad.Fill(dt);
+                        }
+                    }
+                }
+
+                foreach (DataRow item in dt.Rows)
+                {
+                    sonuc.Add(new RandevuListesiClass
+                    {
+                        DanisanAdiSoyadi = item["DANISAN"].ToString(),
+                        UzmanAdiSoyadi = item["Uzman"].ToString(),
+                        RandevuTarihSaatiStr = item["TarihSaat"].ToString(),
+                        RandevuTarihSaati = Convert.ToDateTime(item["TarihSaat"].ToString()),
+                        RandevuOrtami = item["RandevuOrtami"].ToString(),
+                        RandevuDuzenle = string.Format(duzenle, item["RandevuId"].ToString()),
+                        RandevuSil = string.Format(sil, item["RandevuId"].ToString())
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggerClass.ErrorLog(IslemYapanUser, "RandevuListesi", IP, ex.ToString());
+                sonuc = null;
+            }
+            return sonuc;
+        }
 
         public List<RandevuListesiClass> RandevuListesi(string IP, Guid? IslemYapanUser)
         {
