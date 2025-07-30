@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbPdrMerModelStoreContainer" CdmEntityContainer="dbPdrMerEntities">
+    <EntitySetMapping Name="Etkinlikler">
+      <EntityTypeMapping TypeName="dbPdrMerModel.Etkinlikler">
+        <MappingFragment StoreEntitySet="Etkinlikler">
+          <ScalarProperty Name="EtkinlikId" ColumnName="EtkinlikId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UzmanGuidId" ColumnName="UzmanGuidId" />
+          <ScalarProperty Name="EtkinlikAdi" ColumnName="EtkinlikAdi" />
+          <ScalarProperty Name="EtkinlikTipi" ColumnName="EtkinlikTipi" />
+          <ScalarProperty Name="EtkinlikTarihSaati" ColumnName="EtkinlikTarihSaati" />
+          <ScalarProperty Name="EtkinlikKatilimciSayisi" ColumnName="EtkinlikKatilimciSayisi" />
+          <ScalarProperty Name="EtkinlikDosyaYolu" ColumnName="EtkinlikDosyaYolu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanicilar">
+      <EntityTypeMapping TypeName="dbPdrMerModel.Kullanicilar">
+        <MappingFragment StoreEntitySet="Kullanicilar">
+          <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+          <ScalarProperty Name="KullaniciGuidId" ColumnName="KullaniciGuidId" />
+          <ScalarProperty Name="KullaniciTckn" ColumnName="KullaniciTckn" />
+          <ScalarProperty Name="KullaniciAdiSoyadi" ColumnName="KullaniciAdiSoyadi" />
+          <ScalarProperty Name="KullaniciTipi" ColumnName="KullaniciTipi" />
+          <ScalarProperty Name="KullaniciTelefonu" ColumnName="KullaniciTelefonu" />
+          <ScalarProperty Name="KullaniciEpostasi" ColumnName="KullaniciEpostasi" />
+          <ScalarProperty Name="KullaniciParolasi" ColumnName="KullaniciParolasi" />
+          <ScalarProperty Name="KullaniciCinsiyeti" ColumnName="KullaniciCinsiyeti" />
+          <ScalarProperty Name="KullaniciMedeniHali" ColumnName="KullaniciMedeniHali" />
+          <ScalarProperty Name="KullaniciMeslegi" ColumnName="KullaniciMeslegi" />
+          <ScalarProperty Name="KullaniciEgitimDuzeyi" ColumnName="KullaniciEgitimDuzeyi" />
+          <ScalarProperty Name="KullaniciOkuduguBolumu" ColumnName="KullaniciOkuduguBolumu" />
+          <ScalarProperty Name="KullaniciSinifi" ColumnName="KullaniciSinifi" />
+          <ScalarProperty Name="KullaniciDanisanTipi" ColumnName="KullaniciDanisanTipi" />
+          <ScalarProperty Name="KullaniciDogumTarihi" ColumnName="KullaniciDogumTarihi" />
+          <ScalarProperty Name="KullaniciIsGorevi" ColumnName="KullaniciIsGorevi" />
+          <ScalarProperty Name="KullaniciIsTelefonu" ColumnName="KullaniciIsTelefonu" />
+          <ScalarProperty Name="KullaniciCocukSayisi" ColumnName="KullaniciCocukSayisi" />
+          <ScalarProperty Name="KullaniciPsikolojikDestek" ColumnName="KullaniciPsikolojikDestek" />
+          <ScalarProperty Name="KullaniciPsikolojikIlac" ColumnName="KullaniciPsikolojikIlac" />
+          <ScalarProperty Name="DanisanYakinlikDerecesi" ColumnName="DanisanYakinlikDerecesi" />
+          <ScalarProperty Name="DanisanYakiniAdiSoyadi" ColumnName="DanisanYakiniAdiSoyadi" />
+          <ScalarProperty Name="DanisanYakiniYasi" ColumnName="DanisanYakiniYasi" />
+          <ScalarProperty Name="DanisanYakiniMeslegi" ColumnName="DanisanYakiniMeslegi" />
+          <ScalarProperty Name="DanisanYakiniTelefonu" ColumnName="DanisanYakiniTelefonu" />
+          <ScalarProperty Name="DanisanYakiniEgitimDuzeyi" ColumnName="DanisanYakiniEgitimDuzeyi" />
+          <ScalarProperty Name="DanisanYakiniCalistigiBirim" ColumnName="DanisanYakiniCalistigiBirim" />
+          <ScalarProperty Name="DanisanSorunAlani" ColumnName="DanisanSorunAlani" />
+          <ScalarProperty Name="DanisanGelisNedeni" ColumnName="DanisanGelisNedeni" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OlcekKullaniciSonuclar">
+      <EntityTypeMapping TypeName="dbPdrMerModel.OlcekKullaniciSonuclar">
+        <MappingFragment StoreEntitySet="OlcekKullaniciSonuclar">
+          <ScalarProperty Name="OlcekKullaniciSonucId" ColumnName="OlcekKullaniciSonucId" />
+          <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+          <ScalarProperty Name="DanisanGuidId" ColumnName="DanisanGuidId" />
+          <ScalarProperty Name="SoruNo" ColumnName="SoruNo" />
+          <ScalarProperty Name="Cevap" ColumnName="Cevap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Olcekler">
+      <EntityTypeMapping TypeName="dbPdrMerModel.Olcekler">
+        <MappingFragment StoreEntitySet="Olcekler">
+          <ScalarProperty Name="OlcekId" ColumnName="OlcekId" />
+          <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OlcekAdi" ColumnName="OlcekAdi" />
+          <ScalarProperty Name="OlcekSoruSayisi" ColumnName="OlcekSoruSayisi" />
+          <ScalarProperty Name="OlcekSecenekSayisi" ColumnName="OlcekSecenekSayisi" />
+          <ScalarProperty Name="OlcekSecenekBasiPuani" ColumnName="OlcekSecenekBasiPuani" />
+          <ScalarProperty Name="OlcekNot" ColumnName="OlcekNot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OlcekSecenekler">
+      <EntityTypeMapping TypeName="dbPdrMerModel.OlcekSecenekler">
+        <MappingFragment StoreEntitySet="OlcekSecenekler">
+          <ScalarProperty Name="OlcekSecenekId" ColumnName="OlcekSecenekId" />
+          <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OlcekSoruId" ColumnName="OlcekSoruId" />
+          <ScalarProperty Name="Secenek" ColumnName="Secenek" />
+          <ScalarProperty Name="SecenekSira" ColumnName="SecenekSira" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OlcekSorular">
+      <EntityTypeMapping TypeName="dbPdrMerModel.OlcekSorular">
+        <MappingFragment StoreEntitySet="OlcekSorular">
+          <ScalarProperty Name="OlcekSoruId" ColumnName="OlcekSoruId" />
+          <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Soru" ColumnName="Soru" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="SoruNo" ColumnName="SoruNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parametreler">
+      <EntityTypeMapping TypeName="dbPdrMerModel.Parametreler">
+        <MappingFragment StoreEntitySet="Parametreler">
+          <ScalarProperty Name="ParametreId" ColumnName="ParametreId" />
+          <ScalarProperty Name="ParametreDeger" ColumnName="ParametreDeger" />
+          <ScalarProperty Name="ParametreAdi" ColumnName="ParametreAdi" />
+          <ScalarProperty Name="ParametreGrup" ColumnName="ParametreGrup" />
+          <ScalarProperty Name="ParametreAktifMi" ColumnName="ParametreAktifMi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Randevular">
+      <EntityTypeMapping TypeName="dbPdrMerModel.Randevular">
+        <MappingFragment StoreEntitySet="Randevular">
+          <ScalarProperty Name="RandevuId" ColumnName="RandevuId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UzmanGuidId" ColumnName="UzmanGuidId" />
+          <ScalarProperty Name="DanisanGuidId" ColumnName="DanisanGuidId" />
+          <ScalarProperty Name="RandevuTarihSaati" ColumnName="RandevuTarihSaati" />
+          <ScalarProperty Name="RandevuOrtami" ColumnName="RandevuOrtami" />
+          <ScalarProperty Name="RandevuDurumu" ColumnName="RandevuDurumu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SabitTakvim">
+      <EntityTypeMapping TypeName="dbPdrMerModel.SabitTakvim">
+        <MappingFragment StoreEntitySet="SabitTakvim">
+          <ScalarProperty Name="SabitTakvimID" ColumnName="SabitTakvimID" />
+          <ScalarProperty Name="Gun" ColumnName="Gun" />
+          <ScalarProperty Name="Saat" ColumnName="Saat" />
+          <ScalarProperty Name="SabitTakvimDurum" ColumnName="SabitTakvimDurum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SistemLog">
+      <EntityTypeMapping TypeName="dbPdrMerModel.SistemLog">
+        <MappingFragment StoreEntitySet="SistemLog">
+          <ScalarProperty Name="SistemLogId" ColumnName="SistemLogId" />
+          <ScalarProperty Name="Metod" ColumnName="Metod" />
+          <ScalarProperty Name="LogDeger" ColumnName="LogDeger" />
+          <ScalarProperty Name="LogTipi" ColumnName="LogTipi" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OlcekVeDanisan">
+      <EntityTypeMapping TypeName="dbPdrMerModel.OlcekVeDanisan">
+        <MappingFragment StoreEntitySet="OlcekVeDanisan">
+          <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+          <ScalarProperty Name="DanisanGuidId" ColumnName="DanisanGuidId" />
+          <ScalarProperty Name="TarihSaat" ColumnName="TarihSaat" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbPdrMerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Etkinlikler">
+          <Key>
+            <PropertyRef Name="EtkinlikId" />
+          </Key>
+          <Property Name="EtkinlikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="UzmanGuidId" Type="uniqueidentifier" />
+          <Property Name="EtkinlikAdi" Type="nvarchar(max)" />
+          <Property Name="EtkinlikTipi" Type="nvarchar(max)" />
+          <Property Name="EtkinlikTarihSaati" Type="datetime" />
+          <Property Name="EtkinlikKatilimciSayisi" Type="int" />
+          <Property Name="EtkinlikDosyaYolu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciId" />
+          </Key>
+          <Property Name="KullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciGuidId" Type="uniqueidentifier" />
+          <Property Name="KullaniciTckn" Type="nvarchar" MaxLength="64" />
+          <Property Name="KullaniciAdiSoyadi" Type="nvarchar(max)" />
+          <Property Name="KullaniciTipi" Type="nvarchar(max)" />
+          <Property Name="KullaniciTelefonu" Type="nvarchar" MaxLength="16" />
+          <Property Name="KullaniciEpostasi" Type="nvarchar(max)" />
+          <Property Name="KullaniciParolasi" Type="nvarchar(max)" />
+          <Property Name="KullaniciCinsiyeti" Type="nvarchar" MaxLength="32" />
+          <Property Name="KullaniciMedeniHali" Type="nvarchar" MaxLength="32" />
+          <Property Name="KullaniciMeslegi" Type="nvarchar(max)" />
+          <Property Name="KullaniciEgitimDuzeyi" Type="nvarchar" MaxLength="64" />
+          <Property Name="KullaniciOkuduguBolumu" Type="nvarchar(max)" />
+          <Property Name="KullaniciSinifi" Type="nvarchar(max)" />
+          <Property Name="KullaniciDanisanTipi" Type="nvarchar" MaxLength="64" />
+          <Property Name="KullaniciDogumTarihi" Type="date" />
+          <Property Name="KullaniciIsGorevi" Type="nvarchar(max)" />
+          <Property Name="KullaniciIsTelefonu" Type="nvarchar" MaxLength="16" />
+          <Property Name="KullaniciCocukSayisi" Type="int" />
+          <Property Name="KullaniciPsikolojikDestek" Type="bit" />
+          <Property Name="KullaniciPsikolojikIlac" Type="bit" />
+          <Property Name="DanisanYakinlikDerecesi" Type="nvarchar" MaxLength="32" />
+          <Property Name="DanisanYakiniAdiSoyadi" Type="nvarchar(max)" />
+          <Property Name="DanisanYakiniYasi" Type="int" />
+          <Property Name="DanisanYakiniMeslegi" Type="nvarchar(max)" />
+          <Property Name="DanisanYakiniTelefonu" Type="nvarchar" MaxLength="16" />
+          <Property Name="DanisanYakiniEgitimDuzeyi" Type="nvarchar" MaxLength="64" />
+          <Property Name="DanisanYakiniCalistigiBirim" Type="nvarchar" MaxLength="128" />
+          <Property Name="DanisanSorunAlani" Type="nvarchar(max)" />
+          <Property Name="DanisanGelisNedeni" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OlcekKullaniciSonuclar">
+          <Key>
+            <PropertyRef Name="OlcekKullaniciSonucId" />
+          </Key>
+          <Property Name="OlcekKullaniciSonucId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+          <Property Name="DanisanGuidId" Type="uniqueidentifier" />
+          <Property Name="SoruNo" Type="int" />
+          <Property Name="Cevap" Type="int" />
+        </EntityType>
+        <EntityType Name="Olcekler">
+          <Key>
+            <PropertyRef Name="OlcekId" />
+          </Key>
+          <Property Name="OlcekId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="OlcekAdi" Type="nvarchar(max)" />
+          <Property Name="OlcekSoruSayisi" Type="int" />
+          <Property Name="OlcekSecenekSayisi" Type="int" />
+          <Property Name="OlcekSecenekBasiPuani" Type="int" />
+          <Property Name="OlcekNot" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OlcekSecenekler">
+          <Key>
+            <PropertyRef Name="OlcekSecenekId" />
+          </Key>
+          <Property Name="OlcekSecenekId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="OlcekSoruId" Type="int" />
+          <Property Name="Secenek" Type="nvarchar(max)" />
+          <Property Name="SecenekSira" Type="int" />
+        </EntityType>
+        <EntityType Name="OlcekSorular">
+          <Key>
+            <PropertyRef Name="OlcekSoruId" />
+          </Key>
+          <Property Name="OlcekSoruId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="Soru" Type="nvarchar(max)" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="SoruNo" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbPdrMer.dbo.OlcekVeDanisan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OlcekVeDanisan">
+          <Key>
+            <PropertyRef Name="OlcekGuidId" />
+            <PropertyRef Name="DanisanGuidId" />
+          </Key>
+          <Property Name="OlcekGuidId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DanisanGuidId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TarihSaat" Type="datetime" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Parametreler">
+          <Key>
+            <PropertyRef Name="ParametreId" />
+          </Key>
+          <Property Name="ParametreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParametreDeger" Type="nvarchar(max)" />
+          <Property Name="ParametreAdi" Type="nvarchar(max)" />
+          <Property Name="ParametreGrup" Type="nvarchar(max)" />
+          <Property Name="ParametreAktifMi" Type="bit" />
+        </EntityType>
+        <EntityType Name="Randevular">
+          <Key>
+            <PropertyRef Name="RandevuId" />
+          </Key>
+          <Property Name="RandevuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="UzmanGuidId" Type="uniqueidentifier" />
+          <Property Name="DanisanGuidId" Type="uniqueidentifier" />
+          <Property Name="RandevuTarihSaati" Type="datetime" />
+          <Property Name="RandevuOrtami" Type="nvarchar" MaxLength="64" />
+          <Property Name="RandevuDurumu" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="SabitTakvim">
+          <Key>
+            <PropertyRef Name="SabitTakvimID" />
+          </Key>
+          <Property Name="SabitTakvimID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gun" Type="nvarchar" MaxLength="64" />
+          <Property Name="Saat" Type="time" Precision="7" />
+          <Property Name="SabitTakvimDurum" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="SistemLog">
+          <Key>
+            <PropertyRef Name="SistemLogId" />
+          </Key>
+          <Property Name="SistemLogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Metod" Type="nvarchar" MaxLength="50" />
+          <Property Name="LogDeger" Type="nvarchar(max)" />
+          <Property Name="LogTipi" Type="nvarchar" MaxLength="16" />
+          <Property Name="LogDate" Type="datetime" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="dbPdrMerModelStoreContainer">
+          <EntitySet Name="Etkinlikler" EntityType="Self.Etkinlikler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OlcekKullaniciSonuclar" EntityType="Self.OlcekKullaniciSonuclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Olcekler" EntityType="Self.Olcekler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OlcekSecenekler" EntityType="Self.OlcekSecenekler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OlcekSorular" EntityType="Self.OlcekSorular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametreler" EntityType="Self.Parametreler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Randevular" EntityType="Self.Randevular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SabitTakvim" EntityType="Self.SabitTakvim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SistemLog" EntityType="Self.SistemLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OlcekVeDanisan" EntityType="Self.OlcekVeDanisan" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OlcekVeDanisan].[OlcekGuidId] AS [OlcekGuidId], 
+    [OlcekVeDanisan].[DanisanGuidId] AS [DanisanGuidId], 
+    [OlcekVeDanisan].[TarihSaat] AS [TarihSaat], 
+    [OlcekVeDanisan].[UserId] AS [UserId]
+    FROM [dbo].[OlcekVeDanisan] AS [OlcekVeDanisan]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbPdrMerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Etkinlikler">
+          <Key>
+            <PropertyRef Name="EtkinlikId" />
+          </Key>
+          <Property Name="EtkinlikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="UzmanGuidId" Type="Guid" />
+          <Property Name="EtkinlikAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EtkinlikTipi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EtkinlikTarihSaati" Type="DateTime" Precision="3" />
+          <Property Name="EtkinlikKatilimciSayisi" Type="Int32" />
+          <Property Name="EtkinlikDosyaYolu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciId" />
+          </Key>
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciGuidId" Type="Guid" />
+          <Property Name="KullaniciTckn" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciAdiSoyadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciTipi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciTelefonu" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciEpostasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciParolasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciCinsiyeti" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciMedeniHali" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciMeslegi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciEgitimDuzeyi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciOkuduguBolumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciSinifi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciDanisanTipi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciDogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="KullaniciIsGorevi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciIsTelefonu" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciCocukSayisi" Type="Int32" />
+          <Property Name="KullaniciPsikolojikDestek" Type="Boolean" />
+          <Property Name="KullaniciPsikolojikIlac" Type="Boolean" />
+          <Property Name="DanisanYakinlikDerecesi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="DanisanYakiniAdiSoyadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DanisanYakiniYasi" Type="Int32" />
+          <Property Name="DanisanYakiniMeslegi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DanisanYakiniTelefonu" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="DanisanYakiniEgitimDuzeyi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DanisanYakiniCalistigiBirim" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DanisanSorunAlani" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DanisanGelisNedeni" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OlcekKullaniciSonuclar">
+          <Key>
+            <PropertyRef Name="OlcekKullaniciSonucId" />
+          </Key>
+          <Property Name="OlcekKullaniciSonucId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OlcekGuidId" Type="Guid" />
+          <Property Name="DanisanGuidId" Type="Guid" />
+          <Property Name="SoruNo" Type="Int32" />
+          <Property Name="Cevap" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Olcekler">
+          <Key>
+            <PropertyRef Name="OlcekId" />
+          </Key>
+          <Property Name="OlcekId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OlcekGuidId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="OlcekAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OlcekSoruSayisi" Type="Int32" />
+          <Property Name="OlcekSecenekSayisi" Type="Int32" />
+          <Property Name="OlcekSecenekBasiPuani" Type="Int32" />
+          <Property Name="OlcekNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OlcekSecenekler">
+          <Key>
+            <PropertyRef Name="OlcekSecenekId" />
+          </Key>
+          <Property Name="OlcekSecenekId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OlcekGuidId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="OlcekSoruId" Type="Int32" />
+          <Property Name="Secenek" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecenekSira" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OlcekSorular">
+          <Key>
+            <PropertyRef Name="OlcekSoruId" />
+          </Key>
+          <Property Name="OlcekSoruId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OlcekGuidId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="Soru" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="SoruNo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Parametreler">
+          <Key>
+            <PropertyRef Name="ParametreId" />
+          </Key>
+          <Property Name="ParametreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParametreDeger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParametreAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParametreGrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParametreAktifMi" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Randevular">
+          <Key>
+            <PropertyRef Name="RandevuId" />
+          </Key>
+          <Property Name="RandevuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="UzmanGuidId" Type="Guid" />
+          <Property Name="DanisanGuidId" Type="Guid" />
+          <Property Name="RandevuTarihSaati" Type="DateTime" Precision="3" />
+          <Property Name="RandevuOrtami" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RandevuDurumu" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SabitTakvim">
+          <Key>
+            <PropertyRef Name="SabitTakvimID" />
+          </Key>
+          <Property Name="SabitTakvimID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gun" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Saat" Type="Time" Precision="7" />
+          <Property Name="SabitTakvimDurum" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SistemLog">
+          <Key>
+            <PropertyRef Name="SistemLogId" />
+          </Key>
+          <Property Name="SistemLogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Metod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LogDeger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogTipi" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="LogDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OlcekVeDanisan">
+          <Key>
+            <PropertyRef Name="OlcekGuidId" />
+            <PropertyRef Name="DanisanGuidId" />
+          </Key>
+          <Property Name="OlcekGuidId" Type="Guid" Nullable="false" />
+          <Property Name="DanisanGuidId" Type="Guid" Nullable="false" />
+          <Property Name="TarihSaat" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Guid" />
+        </EntityType>
+        <EntityContainer Name="dbPdrMerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Etkinlikler" EntityType="Self.Etkinlikler" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+          <EntitySet Name="OlcekKullaniciSonuclar" EntityType="Self.OlcekKullaniciSonuclar" />
+          <EntitySet Name="Olcekler" EntityType="Self.Olcekler" />
+          <EntitySet Name="OlcekSecenekler" EntityType="Self.OlcekSecenekler" />
+          <EntitySet Name="OlcekSorular" EntityType="Self.OlcekSorular" />
+          <EntitySet Name="Parametreler" EntityType="Self.Parametreler" />
+          <EntitySet Name="Randevular" EntityType="Self.Randevular" />
+          <EntitySet Name="SabitTakvim" EntityType="Self.SabitTakvim" />
+          <EntitySet Name="SistemLog" EntityType="Self.SistemLog" />
+          <EntitySet Name="OlcekVeDanisan" EntityType="Self.OlcekVeDanisan" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbPdrMerModelStoreContainer" CdmEntityContainer="dbPdrMerEntities">
+          <EntitySetMapping Name="Etkinlikler">
+            <EntityTypeMapping TypeName="dbPdrMerModel.Etkinlikler">
+              <MappingFragment StoreEntitySet="Etkinlikler">
+                <ScalarProperty Name="EtkinlikId" ColumnName="EtkinlikId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UzmanGuidId" ColumnName="UzmanGuidId" />
+                <ScalarProperty Name="EtkinlikAdi" ColumnName="EtkinlikAdi" />
+                <ScalarProperty Name="EtkinlikTipi" ColumnName="EtkinlikTipi" />
+                <ScalarProperty Name="EtkinlikTarihSaati" ColumnName="EtkinlikTarihSaati" />
+                <ScalarProperty Name="EtkinlikKatilimciSayisi" ColumnName="EtkinlikKatilimciSayisi" />
+                <ScalarProperty Name="EtkinlikDosyaYolu" ColumnName="EtkinlikDosyaYolu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicilar">
+            <EntityTypeMapping TypeName="dbPdrMerModel.Kullanicilar">
+              <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="KullaniciGuidId" ColumnName="KullaniciGuidId" />
+                <ScalarProperty Name="KullaniciTckn" ColumnName="KullaniciTckn" />
+                <ScalarProperty Name="KullaniciAdiSoyadi" ColumnName="KullaniciAdiSoyadi" />
+                <ScalarProperty Name="KullaniciTipi" ColumnName="KullaniciTipi" />
+                <ScalarProperty Name="KullaniciTelefonu" ColumnName="KullaniciTelefonu" />
+                <ScalarProperty Name="KullaniciEpostasi" ColumnName="KullaniciEpostasi" />
+                <ScalarProperty Name="KullaniciParolasi" ColumnName="KullaniciParolasi" />
+                <ScalarProperty Name="KullaniciCinsiyeti" ColumnName="KullaniciCinsiyeti" />
+                <ScalarProperty Name="KullaniciMedeniHali" ColumnName="KullaniciMedeniHali" />
+                <ScalarProperty Name="KullaniciMeslegi" ColumnName="KullaniciMeslegi" />
+                <ScalarProperty Name="KullaniciEgitimDuzeyi" ColumnName="KullaniciEgitimDuzeyi" />
+                <ScalarProperty Name="KullaniciOkuduguBolumu" ColumnName="KullaniciOkuduguBolumu" />
+                <ScalarProperty Name="KullaniciSinifi" ColumnName="KullaniciSinifi" />
+                <ScalarProperty Name="KullaniciDanisanTipi" ColumnName="KullaniciDanisanTipi" />
+                <ScalarProperty Name="KullaniciDogumTarihi" ColumnName="KullaniciDogumTarihi" />
+                <ScalarProperty Name="KullaniciIsGorevi" ColumnName="KullaniciIsGorevi" />
+                <ScalarProperty Name="KullaniciIsTelefonu" ColumnName="KullaniciIsTelefonu" />
+                <ScalarProperty Name="KullaniciCocukSayisi" ColumnName="KullaniciCocukSayisi" />
+                <ScalarProperty Name="KullaniciPsikolojikDestek" ColumnName="KullaniciPsikolojikDestek" />
+                <ScalarProperty Name="KullaniciPsikolojikIlac" ColumnName="KullaniciPsikolojikIlac" />
+                <ScalarProperty Name="DanisanYakinlikDerecesi" ColumnName="DanisanYakinlikDerecesi" />
+                <ScalarProperty Name="DanisanYakiniAdiSoyadi" ColumnName="DanisanYakiniAdiSoyadi" />
+                <ScalarProperty Name="DanisanYakiniYasi" ColumnName="DanisanYakiniYasi" />
+                <ScalarProperty Name="DanisanYakiniMeslegi" ColumnName="DanisanYakiniMeslegi" />
+                <ScalarProperty Name="DanisanYakiniTelefonu" ColumnName="DanisanYakiniTelefonu" />
+                <ScalarProperty Name="DanisanYakiniEgitimDuzeyi" ColumnName="DanisanYakiniEgitimDuzeyi" />
+                <ScalarProperty Name="DanisanYakiniCalistigiBirim" ColumnName="DanisanYakiniCalistigiBirim" />
+                <ScalarProperty Name="DanisanSorunAlani" ColumnName="DanisanSorunAlani" />
+                <ScalarProperty Name="DanisanGelisNedeni" ColumnName="DanisanGelisNedeni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OlcekKullaniciSonuclar">
+            <EntityTypeMapping TypeName="dbPdrMerModel.OlcekKullaniciSonuclar">
+              <MappingFragment StoreEntitySet="OlcekKullaniciSonuclar">
+                <ScalarProperty Name="OlcekKullaniciSonucId" ColumnName="OlcekKullaniciSonucId" />
+                <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+                <ScalarProperty Name="DanisanGuidId" ColumnName="DanisanGuidId" />
+                <ScalarProperty Name="SoruNo" ColumnName="SoruNo" />
+                <ScalarProperty Name="Cevap" ColumnName="Cevap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Olcekler">
+            <EntityTypeMapping TypeName="dbPdrMerModel.Olcekler">
+              <MappingFragment StoreEntitySet="Olcekler">
+                <ScalarProperty Name="OlcekId" ColumnName="OlcekId" />
+                <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OlcekAdi" ColumnName="OlcekAdi" />
+                <ScalarProperty Name="OlcekSoruSayisi" ColumnName="OlcekSoruSayisi" />
+                <ScalarProperty Name="OlcekSecenekSayisi" ColumnName="OlcekSecenekSayisi" />
+                <ScalarProperty Name="OlcekSecenekBasiPuani" ColumnName="OlcekSecenekBasiPuani" />
+                <ScalarProperty Name="OlcekNot" ColumnName="OlcekNot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OlcekSecenekler">
+            <EntityTypeMapping TypeName="dbPdrMerModel.OlcekSecenekler">
+              <MappingFragment StoreEntitySet="OlcekSecenekler">
+                <ScalarProperty Name="OlcekSecenekId" ColumnName="OlcekSecenekId" />
+                <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OlcekSoruId" ColumnName="OlcekSoruId" />
+                <ScalarProperty Name="Secenek" ColumnName="Secenek" />
+                <ScalarProperty Name="SecenekSira" ColumnName="SecenekSira" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OlcekSorular">
+            <EntityTypeMapping TypeName="dbPdrMerModel.OlcekSorular">
+              <MappingFragment StoreEntitySet="OlcekSorular">
+                <ScalarProperty Name="OlcekSoruId" ColumnName="OlcekSoruId" />
+                <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Soru" ColumnName="Soru" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="SoruNo" ColumnName="SoruNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametreler">
+            <EntityTypeMapping TypeName="dbPdrMerModel.Parametreler">
+              <MappingFragment StoreEntitySet="Parametreler">
+                <ScalarProperty Name="ParametreId" ColumnName="ParametreId" />
+                <ScalarProperty Name="ParametreDeger" ColumnName="ParametreDeger" />
+                <ScalarProperty Name="ParametreAdi" ColumnName="ParametreAdi" />
+                <ScalarProperty Name="ParametreGrup" ColumnName="ParametreGrup" />
+                <ScalarProperty Name="ParametreAktifMi" ColumnName="ParametreAktifMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Randevular">
+            <EntityTypeMapping TypeName="dbPdrMerModel.Randevular">
+              <MappingFragment StoreEntitySet="Randevular">
+                <ScalarProperty Name="RandevuId" ColumnName="RandevuId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UzmanGuidId" ColumnName="UzmanGuidId" />
+                <ScalarProperty Name="DanisanGuidId" ColumnName="DanisanGuidId" />
+                <ScalarProperty Name="RandevuTarihSaati" ColumnName="RandevuTarihSaati" />
+                <ScalarProperty Name="RandevuOrtami" ColumnName="RandevuOrtami" />
+                <ScalarProperty Name="RandevuDurumu" ColumnName="RandevuDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SabitTakvim">
+            <EntityTypeMapping TypeName="dbPdrMerModel.SabitTakvim">
+              <MappingFragment StoreEntitySet="SabitTakvim">
+                <ScalarProperty Name="SabitTakvimID" ColumnName="SabitTakvimID" />
+                <ScalarProperty Name="Gun" ColumnName="Gun" />
+                <ScalarProperty Name="Saat" ColumnName="Saat" />
+                <ScalarProperty Name="SabitTakvimDurum" ColumnName="SabitTakvimDurum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SistemLog">
+            <EntityTypeMapping TypeName="dbPdrMerModel.SistemLog">
+              <MappingFragment StoreEntitySet="SistemLog">
+                <ScalarProperty Name="SistemLogId" ColumnName="SistemLogId" />
+                <ScalarProperty Name="Metod" ColumnName="Metod" />
+                <ScalarProperty Name="LogDeger" ColumnName="LogDeger" />
+                <ScalarProperty Name="LogTipi" ColumnName="LogTipi" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OlcekVeDanisan">
+            <EntityTypeMapping TypeName="dbPdrMerModel.OlcekVeDanisan">
+              <MappingFragment StoreEntitySet="OlcekVeDanisan">
+                <ScalarProperty Name="OlcekGuidId" ColumnName="OlcekGuidId" />
+                <ScalarProperty Name="DanisanGuidId" ColumnName="DanisanGuidId" />
+                <ScalarProperty Name="TarihSaat" ColumnName="TarihSaat" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

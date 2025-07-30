@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbPdrMerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Etkinlikler">
+    <Key>
+      <PropertyRef Name="EtkinlikId" />
+    </Key>
+    <Property Name="EtkinlikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="UzmanGuidId" Type="uniqueidentifier" />
+    <Property Name="EtkinlikAdi" Type="nvarchar(max)" />
+    <Property Name="EtkinlikTipi" Type="nvarchar(max)" />
+    <Property Name="EtkinlikTarihSaati" Type="datetime" />
+    <Property Name="EtkinlikKatilimciSayisi" Type="int" />
+    <Property Name="EtkinlikDosyaYolu" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciId" />
+    </Key>
+    <Property Name="KullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciGuidId" Type="uniqueidentifier" />
+    <Property Name="KullaniciTckn" Type="nvarchar" MaxLength="64" />
+    <Property Name="KullaniciAdiSoyadi" Type="nvarchar(max)" />
+    <Property Name="KullaniciTipi" Type="nvarchar(max)" />
+    <Property Name="KullaniciTelefonu" Type="nvarchar" MaxLength="16" />
+    <Property Name="KullaniciEpostasi" Type="nvarchar(max)" />
+    <Property Name="KullaniciParolasi" Type="nvarchar(max)" />
+    <Property Name="KullaniciCinsiyeti" Type="nvarchar" MaxLength="32" />
+    <Property Name="KullaniciMedeniHali" Type="nvarchar" MaxLength="32" />
+    <Property Name="KullaniciMeslegi" Type="nvarchar(max)" />
+    <Property Name="KullaniciEgitimDuzeyi" Type="nvarchar" MaxLength="64" />
+    <Property Name="KullaniciOkuduguBolumu" Type="nvarchar(max)" />
+    <Property Name="KullaniciSinifi" Type="nvarchar(max)" />
+    <Property Name="KullaniciDanisanTipi" Type="nvarchar" MaxLength="64" />
+    <Property Name="KullaniciDogumTarihi" Type="date" />
+    <Property Name="KullaniciIsGorevi" Type="nvarchar(max)" />
+    <Property Name="KullaniciIsTelefonu" Type="nvarchar" MaxLength="16" />
+    <Property Name="KullaniciCocukSayisi" Type="int" />
+    <Property Name="KullaniciPsikolojikDestek" Type="bit" />
+    <Property Name="KullaniciPsikolojikIlac" Type="bit" />
+    <Property Name="DanisanYakinlikDerecesi" Type="nvarchar" MaxLength="32" />
+    <Property Name="DanisanYakiniAdiSoyadi" Type="nvarchar(max)" />
+    <Property Name="DanisanYakiniYasi" Type="int" />
+    <Property Name="DanisanYakiniMeslegi" Type="nvarchar(max)" />
+    <Property Name="DanisanYakiniTelefonu" Type="nvarchar" MaxLength="16" />
+    <Property Name="DanisanYakiniEgitimDuzeyi" Type="nvarchar" MaxLength="64" />
+    <Property Name="DanisanYakiniCalistigiBirim" Type="nvarchar" MaxLength="128" />
+    <Property Name="DanisanSorunAlani" Type="nvarchar(max)" />
+    <Property Name="DanisanGelisNedeni" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="OlcekKullaniciSonuclar">
+    <Key>
+      <PropertyRef Name="OlcekKullaniciSonucId" />
+    </Key>
+    <Property Name="OlcekKullaniciSonucId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+    <Property Name="DanisanGuidId" Type="uniqueidentifier" />
+    <Property Name="SoruNo" Type="int" />
+    <Property Name="Cevap" Type="int" />
+  </EntityType>
+  <EntityType Name="Olcekler">
+    <Key>
+      <PropertyRef Name="OlcekId" />
+    </Key>
+    <Property Name="OlcekId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="OlcekAdi" Type="nvarchar(max)" />
+    <Property Name="OlcekSoruSayisi" Type="int" />
+    <Property Name="OlcekSecenekSayisi" Type="int" />
+    <Property Name="OlcekSecenekBasiPuani" Type="int" />
+    <Property Name="OlcekNot" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="OlcekSecenekler">
+    <Key>
+      <PropertyRef Name="OlcekSecenekId" />
+    </Key>
+    <Property Name="OlcekSecenekId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="OlcekSoruId" Type="int" />
+    <Property Name="Secenek" Type="nvarchar(max)" />
+    <Property Name="SecenekSira" Type="int" />
+  </EntityType>
+  <EntityType Name="OlcekSorular">
+    <Key>
+      <PropertyRef Name="OlcekSoruId" />
+    </Key>
+    <Property Name="OlcekSoruId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OlcekGuidId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="Soru" Type="nvarchar(max)" />
+    <Property Name="Tarih" Type="datetime" />
+    <Property Name="SoruNo" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbPdrMer.dbo.OlcekVeDanisan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="OlcekVeDanisan">
+    <Key>
+      <PropertyRef Name="OlcekGuidId" />
+      <PropertyRef Name="DanisanGuidId" />
+    </Key>
+    <Property Name="OlcekGuidId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DanisanGuidId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TarihSaat" Type="datetime" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Parametreler">
+    <Key>
+      <PropertyRef Name="ParametreId" />
+    </Key>
+    <Property Name="ParametreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParametreDeger" Type="nvarchar(max)" />
+    <Property Name="ParametreAdi" Type="nvarchar(max)" />
+    <Property Name="ParametreGrup" Type="nvarchar(max)" />
+    <Property Name="ParametreAktifMi" Type="bit" />
+  </EntityType>
+  <EntityType Name="Randevular">
+    <Key>
+      <PropertyRef Name="RandevuId" />
+    </Key>
+    <Property Name="RandevuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="UzmanGuidId" Type="uniqueidentifier" />
+    <Property Name="DanisanGuidId" Type="uniqueidentifier" />
+    <Property Name="RandevuTarihSaati" Type="datetime" />
+    <Property Name="RandevuOrtami" Type="nvarchar" MaxLength="64" />
+    <Property Name="RandevuDurumu" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="SabitTakvim">
+    <Key>
+      <PropertyRef Name="SabitTakvimID" />
+    </Key>
+    <Property Name="SabitTakvimID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gun" Type="nvarchar" MaxLength="64" />
+    <Property Name="Saat" Type="time" Precision="7" />
+    <Property Name="SabitTakvimDurum" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="SistemLog">
+    <Key>
+      <PropertyRef Name="SistemLogId" />
+    </Key>
+    <Property Name="SistemLogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Metod" Type="nvarchar" MaxLength="50" />
+    <Property Name="LogDeger" Type="nvarchar(max)" />
+    <Property Name="LogTipi" Type="nvarchar" MaxLength="16" />
+    <Property Name="LogDate" Type="datetime" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="IP" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="dbPdrMerModelStoreContainer">
+    <EntitySet Name="Etkinlikler" EntityType="Self.Etkinlikler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OlcekKullaniciSonuclar" EntityType="Self.OlcekKullaniciSonuclar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Olcekler" EntityType="Self.Olcekler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OlcekSecenekler" EntityType="Self.OlcekSecenekler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OlcekSorular" EntityType="Self.OlcekSorular" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parametreler" EntityType="Self.Parametreler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Randevular" EntityType="Self.Randevular" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SabitTakvim" EntityType="Self.SabitTakvim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SistemLog" EntityType="Self.SistemLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OlcekVeDanisan" EntityType="Self.OlcekVeDanisan" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [OlcekVeDanisan].[OlcekGuidId] AS [OlcekGuidId], 
+    [OlcekVeDanisan].[DanisanGuidId] AS [DanisanGuidId], 
+    [OlcekVeDanisan].[TarihSaat] AS [TarihSaat], 
+    [OlcekVeDanisan].[UserId] AS [UserId]
+    FROM [dbo].[OlcekVeDanisan] AS [OlcekVeDanisan]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
