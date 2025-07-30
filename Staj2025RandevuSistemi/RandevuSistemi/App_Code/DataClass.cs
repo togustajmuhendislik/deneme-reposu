@@ -3,14 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
 namespace RandevuSistemi.App_Code
 {
-    public class DataClass:MainClass
+    public class DataClass : MainClass
     {
-       
+
         public List<RandevuListesiClass> RandevuListesi(string IP, Guid? IslemYapanUser)
         {
             List<RandevuListesiClass> sonuc = new List<RandevuListesiClass>();
@@ -28,7 +29,7 @@ namespace RandevuSistemi.App_Code
             DataTable dt = new DataTable();
             string sil = "<a href=\"javascript:RandevuSil('{0}')\">Sil</a>";
             string duzenle = "<a href=\"javascript:RandevuDuzenle('{0})'\">Düzenle</a>";
-           
+
             try
             {
                 using (con = new SqlConnection(WEB_con_str))
@@ -52,9 +53,9 @@ namespace RandevuSistemi.App_Code
                         DanisanAdiSoyadi = item["DANISAN"].ToString(),
                         UzmanAdiSoyadi = item["Uzman"].ToString(),
                         RandevuTarihSaatiStr = item["TarihSaat"].ToString(),
-                        RandevuTarihSaati = Convert.ToDateTime (item["TarihSaat"].ToString()),
+                        RandevuTarihSaati = Convert.ToDateTime(item["TarihSaat"].ToString()),
                         RandevuOrtami = item["RandevuOrtami"].ToString(),
-                        RandevuDuzenle=string.Format(duzenle, item["RandevuId"].ToString()),
+                        RandevuDuzenle = string.Format(duzenle, item["RandevuId"].ToString()),
                         RandevuSil = string.Format(sil, item["RandevuId"].ToString())
                     });
                 }
@@ -67,6 +68,91 @@ namespace RandevuSistemi.App_Code
             return sonuc;
         }
 
+        public FullCalendarJsonDataClass UzmanTakvimGetir(Guid userId, string IP)
+        {
+            string metod = "DataClass.UzmanTakvimGetir";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(WEB_con_str))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("sp_uzmanTakvim", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserId", userId);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                FullCalendarJsonEventClass etkinlik = new FullCalendarJsonEventClass();
+                                //etkinlik.id = Guid.NewGuid().ToString();
+                                etkinlik.id = reader["RandevuId"].ToString();
+                                etkinlik.title = reader["Baslik"].ToString();
+                                etkinlik.start = MainClass.DateTimeToStringCalendarFormat(Convert.ToDateTime(reader["BaslangicTarihi"]));
+                                etkinlik.end = MainClass.DateTimeToStringCalendarFormat(Convert.ToDateTime(reader["BitisTarihi"]));
+                                etkinlik.color = reader["Renk"].ToString();
+                                etkinlik.allDay = false;
+                                etkinlik.source = reader["Kaynak"].ToString();
+
+                                sonuc.events.Add(etkinlik);
+                            }
+                        }
+                    }
+                }
+
+                DataTable dt = new DataTable();
+
+                using (con = new SqlConnection(WEB_con_str))
+                {
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+
+                    using (SqlCommand command = new SqlCommand("sp_uzmanTakvim", con))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserId", userId);
+
+                        using (SqlDataAdapter adp = new SqlDataAdapter(command))
+                        {
+                            adp.Fill(dt);
+                        }
+                    }
+                }
+
+                //List<FullCalendarJsonEventClass> xxx = dt.AsEnumerable().Select(a => new FullCalendarJsonEventClass { color = a["color"].ToString() }).ToList();
+
+                FullCalendarJsonEventClass tmp;
+                List<FullCalendarJsonEventClass> listt = new List<FullCalendarJsonEventClass>();
+                foreach (DataRow item in dt.AsEnumerable())
+                {
+                    tmp = new FullCalendarJsonEventClass();
+                    tmp.color = item["color"].ToString();
+                    listt.Add(tmp);
+
+                }
+                sonuc.events = listt;
+
+                //using (db = new dbPdrMerEntities())
+                //{
+                //    List<sp_uzmanTakvim_Result> dd = db.sp_uzmanTakvim(userId).ToList();
+                //    List< FullCalendarJsonEventClass > sonnn = dd.Select(a => new FullCalendarJsonEventClass {color= a.Renk}).ToList();
+                //}
+
+                // FullCalendar'ın varsayılan görünüm ayarları
+                sonuc.defaultDate = DateTime.Now.ToString("yyyy-MM-dd");
+                sonuc.firstDay = "1"; // Haftanın ilk gününü Pazartesi (1) olarak ayarla.
+            }
+            catch (Exception ex)
+            {
+                sonuc = new FullCalendarJsonDataClass();
+                System.Diagnostics.Debug.WriteLine("UzmanTakvimGetir Hata: " + ex.Message);
+            }
+            return sonuc;
+        }
 
         public FullCalendarJsonDataClass OrnekTakvimGetirAylik(string AyYil, string IP, string UserId)
         {
@@ -108,7 +194,7 @@ namespace RandevuSistemi.App_Code
         }
 
 
-        public List<SelectJsonClass> ParametreGetir(string ParametreGrup,string BosStr,string Ip,Guid? UserId)
+        public List<SelectJsonClass> ParametreGetir(string ParametreGrup, string BosStr, string Ip, Guid? UserId)
         {
             List<SelectJsonClass> sonuc = null;
             string Metod = "ParametreGetir";
@@ -118,7 +204,7 @@ namespace RandevuSistemi.App_Code
             try
             {
                 sonuc = new List<SelectJsonClass>();
-                if (BosStr!=null)
+                if (BosStr != null)
                 {
                     tmp = new SelectJsonClass();
                     tmp.text = BosStr;
@@ -126,21 +212,21 @@ namespace RandevuSistemi.App_Code
                     sonuc.Add(tmp);
                 }
 
-                using (db=new dbPdrMerEntities())
+                using (db = new dbPdrMerEntities())
                 {
-                    tmpList = db.Parametreler.Where(a => a.ParametreGrup == ParametreGrup).Select(a=>  new SelectJsonClass {id=a.ParametreAdi,text=a.ParametreDeger }).OrderBy(a=> a.text).ToList() ;
+                    tmpList = db.Parametreler.Where(a => a.ParametreGrup == ParametreGrup).Select(a => new SelectJsonClass { id = a.ParametreAdi, text = a.ParametreDeger }).OrderBy(a => a.text).ToList();
                 }
-                if (tmpList!=null)
+                if (tmpList != null)
                 {
                     sonuc.AddRange(tmpList);
                 }
-                
+
 
             }
             catch (Exception ex)
             {
 
-                LoggerClass.ErrorLog(UserId,Metod,Ip,ex.ToString());
+                LoggerClass.ErrorLog(UserId, Metod, Ip, ex.ToString());
             }
 
             return sonuc;
@@ -156,25 +242,25 @@ namespace RandevuSistemi.App_Code
             AESSinif ans = new AESSinif();
             try
             {
- 
-                
+
+
                 using (db = new dbPdrMerEntities())
                 {
-                    data = db.Kullanicilar.Where(a => a.KullaniciEpostasi == KullaniciEpostasi).FirstOrDefault() ;
-                    if (data!=null)
+                    data = db.Kullanicilar.Where(a => a.KullaniciEpostasi == KullaniciEpostasi).FirstOrDefault();
+                    if (data != null)
                     {
                         SifreCozulmus = ans.AESsifreCoz(data.KullaniciParolasi);
-                        if (SifreCozulmus== Sifre)
+                        if (SifreCozulmus == Sifre)
                         {
                             sonuc = new SessionDataClass();
                             sonuc.KullaniciTipi = data.KullaniciTipi;
                             sonuc.AdiSoyadi = data.KullaniciAdiSoyadi;
                             sonuc.UserId = data.KullaniciGuidId.Value;
-                           
+
                         }
                     }
                 }
-                
+
 
 
             }
