@@ -1,0 +1,188 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainUzman.master.cs" Inherits="RandevuSistemi.Uzman.MainUzman" %>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Randevu Sistemi Sekreter Paneli</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="../Template/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="../Template/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../Template/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="../Template/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="../Template/assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="../Template/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../Template/global_assets/js/main/jquery.min.js"></script>
+    <script src="../Template/global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="../Template/global_assets/js/plugins/loaders/blockui.min.js"></script>
+    <script src="../Template/global_assets/js/plugins/notifications/jgrowl.min.js"></script>
+    <script src="../Template/global_assets/js/plugins/notifications/noty.min.js"></script>
+    <script src="../Template/global_assets/js/plugins/loaders/progressbar.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/tr.js"></script> 
+    
+    <script src="../Template/assets/js/app.js"></script>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+   <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .page-content {
+        display: flex;
+        min-height: calc(100vh - 56px);
+        flex-grow: 1;
+    }
+
+    /* Navbar için özel stil */
+    .navbar-custom {
+        /* Eski arka plan rengini kaldırıp gradyan ekliyoruz */
+        background: linear-gradient(to right, white, #19115F);
+    }
+    .navbar-custom .navbar-brand img {
+        max-width: 100%;
+        height: auto;
+        max-height: 50px;
+    }
+    
+    /* Sidebar için özel stil */
+    .sidebar-custom {
+        background-color: #524c87;
+        
+    }
+    
+    /* Navbar'ın yüksekliğini hesaba katmak ve içeriğin kalanını doldurmak için */
+    .page-content {
+        display: flex;
+        min-height: calc(100vh - 56px);
+        flex-grow: 1;
+    }
+
+    /* Ana kenar çubuğunun yüksekliğini esnek olarak ayarlayın */
+    #main-sidebar {
+        flex-shrink: 0;
+    }
+
+    /* Ana içerik alanının kalan alanı kaplamasını ve kendi içinde kaydırmasını sağlayın */
+    .content-wrapper {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    /* Sidebar logosu için özel stil */
+    /* Sidebar başlıkları için ek stil */
+    .sidebar-header {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .sidebar-header .btn {
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="navbar navbar-expand-md navbar-dark navbar-custom">
+            <div class="navbar-brand">
+                <img src="../Template/global_assets/images/pdrmer_tr_.png"  alt="Site Logosu">
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-mobile">
+                <ul class="navbar-nav mr-auto">
+                    </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <span class="badge bg-success mr-2">Online</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="logout.html" class="navbar-nav-link" title="Oturumu Kapat">
+                            <i class="icon-switch2"></i> Çıkış
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div id="main-sidebar" class="sidebar sidebar-dark sidebar-main sidebar-expand-md sidebar-custom">
+                <div class="sidebar-header">
+                    
+                    <div class="d-flex align-items-center">
+                        <a href="#" class="sidebar-mobile-main-toggle d-md-none btn btn-link btn-icon text-white" title="Mobil Menüyü Aç/Kapat">
+                            <i class="icon-paragraph-justify3"></i>
+                        </a>
+                        <a href="#" class="sidebar-control sidebar-main-toggle d-none d-md-block btn btn-link btn-icon text-white" class="rounded-circle"title="Kenar Çubuğunu Aç/Kapat">
+                            <i class="icon-paragraph-justify3"></i>
+                        </a>
+                        <a href="#" class="sidebar-mobile-expand d-md-none btn btn-link btn-icon text-white ml-2">
+                            <i class="icon-screen-full"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sidebar-content">
+                    <div class="sidebar-user">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="mr-3">
+                                    <a href="#">
+                                        <img src="../Template/global_assets/images/placeholders/placeholder.jpg" width="38" height="38" class="rounded-circle" alt="Kullanıcı Resmi">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="media-title font-weight-semibold" id="divLoginUser" runat="server">Login Olan Kullanıcı</div>
+                                    <div class="font-size-xs opacity-50">
+                                        <i class="icon-pin font-size-sm"></i>&nbsp;<span id="lblLokasyon" runat="server">Tokat</span>
+                                    </div>
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <a href="#" class="text-white"><i class="icon-cog3"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ul class="nav nav-sidebar" >
+                        <li class="nav-item">
+                            <a href="AnasayfaUzman.aspx" class="nav-link"><i class="icon-home4"></i><span>Ana Sayfa</span></a>
+                        </li>
+                        <li class="nav-item"><a href="RandevularUzman.aspx" class="nav-link"><i class="icon-calendar52"></i><span>Randevular</span></a></li>
+                        <li class="nav-item"><a href="DanisanlarUzman.aspx" class="nav-link"><i class="icon-users4"></i><span>Danışanlar</span></a></li>
+                        <li class="nav-item"><a href="OlceklerUzman.aspx" class="nav-link"><i class="icon-clipboard"></i><span>Ölçekler</span></a></li>
+                        <li class="nav-item"><a href="EtkinliklerUzman.aspx" class="nav-link"><i class="icon-megaphone"></i><span>Etkinlikler</span></a></li>
+                        <li class="nav-item"><a href="İstatisliklerUzman.aspx" class="nav-link"><i class="icon-stats-bars"></i><span>İstatistikler</span></a></li>
+                        <li class="nav-item"><a href="ProfilUzman.aspx" class="nav-link"><i class="icon-user"></i><span>Profil</span></a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="content-wrapper">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

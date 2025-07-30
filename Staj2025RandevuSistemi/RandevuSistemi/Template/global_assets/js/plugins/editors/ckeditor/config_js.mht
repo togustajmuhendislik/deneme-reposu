@@ -1,0 +1,50 @@
+From: =?windows-1254?Q?Internet_Explorer_11_taraf=FDndan_kaydedildi?=
+Subject: 
+Date: Mon, 15 Jul 2019 17:21:28 +0300
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="windows-1254"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.fmath.info/plugins/CKEditor/ckeditor/config.js
+X-MimeOLE: Produced By Microsoft MimeOLE V10.0.10011.16384
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><META content=3D"IE=3D5.0000" =
+http-equiv=3D"X-UA-Compatible">
+
+<META http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dwindows-1254">
+<META name=3D"GENERATOR" content=3D"MSHTML 11.00.10586.1176"></HEAD>
+<BODY>/** * @license Copyright (c) 2003-2016, CKSource - Frederico =
+Knabben. All=20
+rights reserved. * For licensing, see LICENSE.md or =
+http://ckeditor.com/license=20
+*/ CKEDITOR.editorConfig =3D function( config ) {	// Define changes to =
+default=20
+configuration here.	// For complete reference see:	//=20
+http://docs.ckeditor.com/#!/api/CKEDITOR.config	// The toolbar groups=20
+arrangement, optimized for two toolbar rows.	config.toolbarGroups =3D [		=
+{ name:=20
+'clipboard',   groups: [ 'clipboard', 'undo' ] },		{ name: 'editing',    =
+=20
+groups: [ 'find', 'selection', 'spellchecker' ] },		{ name: 'links' },		=
+{ name:=20
+'insert' },		{ name: 'forms' },		{ name: 'tools' },		{ name: 'document',	=
+  =20
+groups: [ 'mode', 'document', 'doctools' ] },		{ name: 'others' },		'/',	=
+	{=20
+name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },		{ name:=20
+'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] =
+},		{=20
+name: 'styles' },		{ name: 'colors' },		{ name: 'about' }	];	// Remove =
+some=20
+buttons provided by the standard plugins, which are	// not needed in the =
+
+Standard(s) toolbar.	config.removeButtons =3D =
+'Underline,Subscript,Superscript';
+	// Set the most common block elements.	config.format_tags =3D =
+'p;h1;h2;h3;pre';
+	// Simplify the dialog windows.	config.removeDialogTabs =3D=20
+'image:advanced;link:advanced';	config.extraPlugins =3D 'FMathEditor'; =
+};=20
+</BODY></HTML>

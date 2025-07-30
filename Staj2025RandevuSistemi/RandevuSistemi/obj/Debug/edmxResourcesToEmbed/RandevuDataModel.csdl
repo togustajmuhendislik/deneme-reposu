@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbPdrMerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Etkinlikler">
+    <Key>
+      <PropertyRef Name="EtkinlikId" />
+    </Key>
+    <Property Name="EtkinlikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="UzmanGuidId" Type="Guid" />
+    <Property Name="EtkinlikAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EtkinlikTipi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EtkinlikTarihSaati" Type="DateTime" Precision="3" />
+    <Property Name="EtkinlikKatilimciSayisi" Type="Int32" />
+    <Property Name="EtkinlikDosyaYolu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciId" />
+    </Key>
+    <Property Name="KullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciGuidId" Type="Guid" />
+    <Property Name="KullaniciTckn" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciAdiSoyadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciTipi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciTelefonu" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciEpostasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciParolasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciCinsiyeti" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciMedeniHali" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciMeslegi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciEgitimDuzeyi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciOkuduguBolumu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciSinifi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciDanisanTipi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciDogumTarihi" Type="DateTime" Precision="0" />
+    <Property Name="KullaniciIsGorevi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciIsTelefonu" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciCocukSayisi" Type="Int32" />
+    <Property Name="KullaniciPsikolojikDestek" Type="Boolean" />
+    <Property Name="KullaniciPsikolojikIlac" Type="Boolean" />
+    <Property Name="DanisanYakinlikDerecesi" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="DanisanYakiniAdiSoyadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DanisanYakiniYasi" Type="Int32" />
+    <Property Name="DanisanYakiniMeslegi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DanisanYakiniTelefonu" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="DanisanYakiniEgitimDuzeyi" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="DanisanYakiniCalistigiBirim" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DanisanSorunAlani" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DanisanGelisNedeni" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OlcekKullaniciSonuclar">
+    <Key>
+      <PropertyRef Name="OlcekKullaniciSonucId" />
+    </Key>
+    <Property Name="OlcekKullaniciSonucId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OlcekGuidId" Type="Guid" />
+    <Property Name="DanisanGuidId" Type="Guid" />
+    <Property Name="SoruNo" Type="Int32" />
+    <Property Name="Cevap" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Olcekler">
+    <Key>
+      <PropertyRef Name="OlcekId" />
+    </Key>
+    <Property Name="OlcekId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OlcekGuidId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="OlcekAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OlcekSoruSayisi" Type="Int32" />
+    <Property Name="OlcekSecenekSayisi" Type="Int32" />
+    <Property Name="OlcekSecenekBasiPuani" Type="Int32" />
+    <Property Name="OlcekNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OlcekSecenekler">
+    <Key>
+      <PropertyRef Name="OlcekSecenekId" />
+    </Key>
+    <Property Name="OlcekSecenekId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OlcekGuidId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="OlcekSoruId" Type="Int32" />
+    <Property Name="Secenek" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecenekSira" Type="Int32" />
+  </EntityType>
+  <EntityType Name="OlcekSorular">
+    <Key>
+      <PropertyRef Name="OlcekSoruId" />
+    </Key>
+    <Property Name="OlcekSoruId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OlcekGuidId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="Soru" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+    <Property Name="SoruNo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Parametreler">
+    <Key>
+      <PropertyRef Name="ParametreId" />
+    </Key>
+    <Property Name="ParametreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParametreDeger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParametreAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParametreGrup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParametreAktifMi" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Randevular">
+    <Key>
+      <PropertyRef Name="RandevuId" />
+    </Key>
+    <Property Name="RandevuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="UzmanGuidId" Type="Guid" />
+    <Property Name="DanisanGuidId" Type="Guid" />
+    <Property Name="RandevuTarihSaati" Type="DateTime" Precision="3" />
+    <Property Name="RandevuOrtami" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="RandevuDurumu" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SabitTakvim">
+    <Key>
+      <PropertyRef Name="SabitTakvimID" />
+    </Key>
+    <Property Name="SabitTakvimID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gun" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Saat" Type="Time" Precision="7" />
+    <Property Name="SabitTakvimDurum" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OlcekVeDanisan">
+    <Key>
+      <PropertyRef Name="OlcekGuidId" />
+      <PropertyRef Name="DanisanGuidId" />
+    </Key>
+    <Property Name="OlcekGuidId" Type="Guid" Nullable="false" />
+    <Property Name="DanisanGuidId" Type="Guid" Nullable="false" />
+    <Property Name="TarihSaat" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Guid" />
+  </EntityType>
+  <EntityContainer Name="dbPdrMerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Etkinlikler" EntityType="Self.Etkinlikler" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+    <EntitySet Name="OlcekKullaniciSonuclar" EntityType="Self.OlcekKullaniciSonuclar" />
+    <EntitySet Name="Olcekler" EntityType="Self.Olcekler" />
+    <EntitySet Name="OlcekSecenekler" EntityType="Self.OlcekSecenekler" />
+    <EntitySet Name="OlcekSorular" EntityType="Self.OlcekSorular" />
+    <EntitySet Name="Parametreler" EntityType="Self.Parametreler" />
+    <EntitySet Name="Randevular" EntityType="Self.Randevular" />
+    <EntitySet Name="SabitTakvim" EntityType="Self.SabitTakvim" />
+    <EntitySet Name="OlcekVeDanisan" EntityType="Self.OlcekVeDanisan" />
+    <EntitySet Name="SistemLog" EntityType="dbPdrMerModel.SistemLog" />
+  </EntityContainer>
+  <EntityType Name="SistemLog">
+    <Key>
+      <PropertyRef Name="SistemLogId" />
+    </Key>
+    <Property Name="SistemLogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Metod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LogDeger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogTipi" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="LogDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
